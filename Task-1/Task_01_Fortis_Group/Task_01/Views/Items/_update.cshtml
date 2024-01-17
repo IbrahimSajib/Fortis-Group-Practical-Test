@@ -1,0 +1,58 @@
+﻿@model Task_01.Models.ItemVM
+
+
+<form asp-action="Update" asp-controller="Items">
+    <div class="row">
+        <div class="col-8">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemId" />
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label asp-for="CategoryId" class="col-form-label"></label>:
+                </div>
+                <div class="col-5">
+                    @Html.DropDownListFor(x => x.CategoryId, ViewBag.CategoryId as SelectList, "----------Select----------", new { @class = "form-control" })
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label asp-for="ItemName" class="col-form-label"></label>:
+                </div>
+                <div class="col-5">
+                    <input asp-for="ItemName" class="form-control form-control-sm" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="ItemName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label asp-for="Status" class="col-form-label"></label>:
+                </div>
+                <div class="col-5 d-flex align-items-center">
+                    <input asp-for="Status" class="form-check-input" style="width:20px;height:20px;" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7 d-flex justify-content-end">
+                    @* <a asp-action="Index" asp-controller="Items" class="btn btn-secondary btn-sm " style="width:80px;">Discard</a> *@
+                    <input type="button" onclick="Discard()" value="Discard" class="btn btn-secondary btn-sm  ms-3" style="width:80px;" />
+                    <input type="submit" value="Update" class="btn btn-primary btn-sm  ms-3" style="width:80px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
